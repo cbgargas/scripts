@@ -75,3 +75,4 @@ with open(args.gff_outfile, 'w') as tabout:
 #close the files 		
 gff.close()
 fasta.close()
+tabout.close()
