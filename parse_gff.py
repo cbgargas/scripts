@@ -17,52 +17,6 @@ parser.add_argument('gff_outfile', help='name for your output file', type=str)
 #parse the cmd line arguments
 args = parser.parse_args()
 
-##biopython method for parsing fasta files:
-#fasta_file = SeqIO.parse(open(args.fasta_file),'fasta')
-#with open(output_file) as out_file:
-#	for seq in fasta_file:
-#    	name, seq = fasta.id, str(fasta.seq)
-#        #new_sequence = some_function(sequence)
-#        #write_fasta(out_file)
-#		print(seq)
-#
-#
-# your solution to open the fasta file, via .split()
-#fasta = open(args.fasta_file, "r")
-#genome=fasta.read().rstrip('\n')
-#header,seq= genome.split('\n')
-#print(seq)
-
-#alternative way to do .split()
-#fasta_contents =args.fasta_file.read()
-#header= args.fasta_file.split('\n')[0]
-#seq== args.fasta_file.split('\n')[1]
-#fasta_file.close()
-
-#solution 2, using next():
-#sequence=next(args.fasta_file)
-#sequence=args.fasta_file.read()
-#seqeuence = seqeunce.rstrip(\n)
-
-#solution 3, for loop:
-#line_counter=1
-#for line in args.fasta_file:
-#	if line_counter ==2:
-#		sequence == line.rstrip('\n')
-#	line_counter += 1
-
-#solution 4, with statement
-#file_in_list=[]
-#with open(args.fasta_file) as args.fasta_file:
-#	file_in_list = args.fasta_file.read().splitlines()
-#	file_in_list = args.fasta_file.splitlines()
-#	genome = file_in_list[1]
-
-
-
-#print header info
-#print(header)
-
 #opens the output file
 with open(args.gff_outfile, 'w') as tabout:
 
@@ -77,7 +31,7 @@ with open(args.gff_outfile, 'w') as tabout:
 
 				#write the genome description to the out file
 				tabout.write(fsa.description+'\n')
-			
+		
 			#create a csv reader object    
 				csvreader = csv.reader(gff, delimiter='\t')
 				for line in csvreader:
