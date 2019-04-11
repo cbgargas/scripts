@@ -27,11 +27,13 @@ with open('output1.fa', 'w') as output1:
         #print(dir(fsa))
         with open(args.outfile, 'w') as output2:
             #open your output1 file for writing
-            #with open('output1.fa', 'r') as fasta2:
+            with open('output1.fa', 'r') as fasta2:
             #add an if/then statement for sequence headers
-            for line in output1:
-                output2.write(line.replace('.', '-'))
-                output2.write(line.replace('\t'or' ', '_'))
+                for line in fasta2:
+                    if line.find('>'):
+                        output2.write(line.replace('.', '-'))
+                    else:
+                        output2.write(line.replace('\t'or' ', '_'))
 
 
 
