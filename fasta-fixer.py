@@ -1,5 +1,6 @@
 #! /usr/bin/python
 
+import os
 import argparse
 from Bio import SeqIO
 
@@ -17,12 +18,14 @@ parser.add_argument('-o','--outfile', help='name for your output file', type=str
 #parse the cmd line arguments
 args = parser.parse_args()
 
+
+
 #open your output file for writing
 with open('intermediate1.fa', 'w') as intermediate1:
     #open your input fasta file
     with open(args.infile) as fasta: 
         #read in fasta file with SeqIO
-        fsa = SeqIO.convert(fasta, args.format1, intermediate1, args.format2)
+        SeqIO.convert(fasta, args.format1, intermediate1, args.format2)
         #gives available options for an object
         #print(dir(fsa))
         with open('intermediate2.fa', 'w') as intermediate3:
@@ -41,15 +44,7 @@ with open('intermediate1.fa', 'w') as intermediate1:
                                 output.write(line.replace('\t', '_'))
                             else:
                                 continue
-
-
-
-
-#close the files 	
-intermediate1.close()
-fasta.close()
-intermediate2.close()
-intermediate3.close()
-intermediate4.close()
-output.close()
+#cremove intermediate files
+os.remove('intermediate1.fa')
+os.remove('intermediate2.fa') 
 
