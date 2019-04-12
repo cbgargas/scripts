@@ -21,30 +21,30 @@ args = parser.parse_args()
 
 
 #open your output file for writing
-with open('intermediate1.fa', 'w') as intermediate1:
+with open('temp1.fa', 'w') as temp1:
     #open your input fasta file
     with open(args.infile) as fasta: 
         #read in fasta file with SeqIO
-        SeqIO.convert(fasta, args.format1, intermediate1, args.format2)
+        SeqIO.convert(fasta, args.format1, temp1, args.format2)
         #gives available options for an object
         #print(dir(fsa))
-        with open('intermediate2.fa', 'w') as intermediate3:
+        with open('temp2.fa', 'w') as temp3:
             #open your output1 file for writing
-            with open('intermediate1.fa', 'r') as intermediate2:
+            with open('temp1.fa', 'r') as temp2:
             #add an if/then statement for sequence headers
-                for line in intermediate2:
+                for line in temp2:
                     if line.find('>'):
-                        intermediate3.write(line.replace('.', '-'))
+                        temp3.write(line.replace('.', '-'))
                     else:
-                        intermediate3.write(line.replace(' ', '_'))
+                        temp3.write(line.replace(' ', '_'))
                 with open(args.outfile, 'w') as output:   
-                    with open('intermediate2.fa', 'r') as intermediate4:
-                        for line in intermediate4:
+                    with open('temp2.fa', 'r') as temp4:
+                        for line in temp4:
                             if line.find('\t'):
                                 output.write(line.replace('\t', '_'))
                             else:
                                 continue
 #cremove intermediate files
-os.remove('intermediate1.fa')
-os.remove('intermediate2.fa') 
+os.remove('temp1.fa')
+os.remove('temp2.fa') 
 
