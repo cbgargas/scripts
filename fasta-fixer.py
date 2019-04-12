@@ -18,28 +18,38 @@ parser.add_argument('-o','--outfile', help='name for your output file', type=str
 args = parser.parse_args()
 
 #open your output file for writing
-with open('output1.fa', 'w') as output1:
+with open('intermediate1.fa', 'w') as intermediate1:
     #open your input fasta file
     with open(args.infile) as fasta: 
         #read in fasta file with SeqIO
-        fsa = SeqIO.convert(fasta, args.format1, output1, args.format2)
+        fsa = SeqIO.convert(fasta, args.format1, intermediate1, args.format2)
         #gives available options for an object
         #print(dir(fsa))
-        with open(args.outfile, 'w') as output2:
+        with open('intermediate2.fa', 'w') as intermediate3:
             #open your output1 file for writing
-            with open('output1.fa', 'r') as fasta2:
+            with open('intermediate1.fa', 'r') as intermediate2:
             #add an if/then statement for sequence headers
-                for line in fasta2:
+                for line in intermediate2:
                     if line.find('>'):
-                        output2.write(line.replace('.', '-'))
+                        intermediate3.write(line.replace('.', '-'))
                     else:
-                        output2.write(line.replace('\t'or' ', '_'))
+                        intermediate3.write(line.replace(' ', '_'))
+                with open(args.outfile, 'w') as output:   
+                    with open('intermediate2.fa', 'r') as intermediate4:
+                        for line in intermediate4:
+                            if line.find('\t'):
+                                output.write(line.replace('\t', '_'))
+                            else:
+                                continue
+
 
 
 
 #close the files 	
-output1.close()
+intermediate1.close()
 fasta.close()
-output2.close()
-fasta2.close()
+intermediate2.close()
+intermediate3.close()
+intermediate4.close()
+output.close()
 
