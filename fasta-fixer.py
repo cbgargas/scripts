@@ -8,11 +8,11 @@ from Bio import SeqIO
 parser = argparse.ArgumentParser(description = 'Imports and corrects shitty fasta files (e.g., Silva LTP fasta files).')
 
 #adding positional arguments to parser
-parser.add_argument('infile', help='.fasta file you wish to parse by .gff features', type=str)
+parser.add_argument('infile', help='phylogenetics file you want to reformat', type=str)
 
 #adding optional arguments to parser
 parser.add_argument('-f1','--format1', help='format of input file', type=str, default='fasta')
-parser.add_argument('-f2','--format2', help='desired output format for output file', type=str, default='fasta-2line')
+parser.add_argument('-f2','--format2', help='format for output file', type=str, default='fasta-2line')
 parser.add_argument('-o','--outfile', help='name for your output file', type=str, default='output.fa')
 
 #parse the cmd line arguments
