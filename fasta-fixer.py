@@ -1,6 +1,5 @@
 #! /usr/bin/python
 
-import os
 import argparse
 from Bio import SeqIO
 
@@ -18,19 +17,17 @@ parser.add_argument('-o','--outfile', help='name for your output file', type=str
 #parse the cmd line arguments
 args = parser.parse_args()
 
-
-
 #open your output file for writing
-with open('temp1.fa', 'w') as temp1:
+with open('/tmp/temp1.fa', 'w') as temp1:
     #open your input fasta file
     with open(args.infile) as fasta: 
         #read in fasta file with SeqIO
         SeqIO.convert(fasta, args.format1, temp1, args.format2)
         #gives available options for an object
         #print(dir(fsa))
-        with open('temp2.fa', 'w') as temp3:
+        with open('/tmp/temp2.fa', 'w') as temp3:
             #open your output1 file for writing
-            with open('temp1.fa', 'r') as temp2:
+            with open('/tmp/temp1.fa', 'r') as temp2:
             #add an if/then statement for sequence headers
                 for line in temp2:
                     if line.find('>'):
@@ -38,13 +35,10 @@ with open('temp1.fa', 'w') as temp1:
                     else:
                         temp3.write(line.replace(' ', '_'))
                 with open(args.outfile, 'w') as output:   
-                    with open('temp2.fa', 'r') as temp4:
+                    with open('/tmp/temp2.fa', 'r') as temp4:
                         for line in temp4:
                             if line.find('\t'):
                                 output.write(line.replace('\t', '_'))
                             else:
                                 continue
-#cremove intermediate files
-os.remove('temp1.fa')
-os.remove('temp2.fa') 
 
